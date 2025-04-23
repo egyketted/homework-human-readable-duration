@@ -2,16 +2,20 @@ package hu.szabolcs.foti.homeworks.human.readable.duration.ui.cli;
 
 import hu.szabolcs.foti.homeworks.human.readable.duration.service.duration.DurationFormatterService;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
+@Component
+@Profile("console")
 public class DurationFormatterCLI implements CommandLineRunner {
 
     private final DurationFormatterService durationFormatterService;
     private boolean running = true;
 
-    public DurationFormatterCLI(DurationFormatterService durationFormatterService, Environment environment) {
+    public DurationFormatterCLI(DurationFormatterService durationFormatterService) {
         this.durationFormatterService = durationFormatterService;
     }
 
