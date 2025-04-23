@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.stream.Stream;
 
-import static hu.szabolcs.foti.homeworks.human.readable.duration.service.duration.DurationParsingConstants.*;
+import static hu.szabolcs.foti.homeworks.human.readable.duration.constants.DurationParsingConstants.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest

@@ -1,5 +1,8 @@
 package hu.szabolcs.foti.homeworks.human.readable.duration.service.duration;
 
+import hu.szabolcs.foti.homeworks.human.readable.duration.service.duration.model.DurationComponent;
+import hu.szabolcs.foti.homeworks.human.readable.duration.service.duration.model.DurationComponentValue;
+import hu.szabolcs.foti.homeworks.human.readable.duration.service.duration.parser.DurationComponentParser;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -10,8 +13,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static hu.szabolcs.foti.homeworks.human.readable.duration.service.duration.DurationComponent.*;
-import static hu.szabolcs.foti.homeworks.human.readable.duration.service.duration.DurationParsingConstants.*;
+import static hu.szabolcs.foti.homeworks.human.readable.duration.service.duration.model.DurationComponent.*;
+import static hu.szabolcs.foti.homeworks.human.readable.duration.constants.DurationParsingConstants.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest

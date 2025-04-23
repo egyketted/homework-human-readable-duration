@@ -1,4 +1,7 @@
-package hu.szabolcs.foti.homeworks.human.readable.duration.service.duration;
+package hu.szabolcs.foti.homeworks.human.readable.duration.service.duration.parser;
+
+import hu.szabolcs.foti.homeworks.human.readable.duration.service.duration.model.DurationComponent;
+import hu.szabolcs.foti.homeworks.human.readable.duration.service.duration.model.DurationComponentValue;
 
 public abstract class DurationComponentParser {
 

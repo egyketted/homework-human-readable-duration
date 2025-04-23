@@ -1,5 +1,8 @@
 package hu.szabolcs.foti.homeworks.human.readable.duration.service.duration;
 
+import hu.szabolcs.foti.homeworks.human.readable.duration.service.duration.model.DurationComponent;
+import hu.szabolcs.foti.homeworks.human.readable.duration.service.duration.model.DurationComponentValue;
+import hu.szabolcs.foti.homeworks.human.readable.duration.service.duration.parser.DurationComponentParser;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;

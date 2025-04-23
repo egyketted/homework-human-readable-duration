@@ -1,4 +1,4 @@
-package hu.szabolcs.foti.homeworks.human.readable.duration.service.duration;
+package hu.szabolcs.foti.homeworks.human.readable.duration.constants;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
