@@ -31,9 +31,9 @@ public class DurationFormatterServiceTest {
     public static Stream<Arguments> testDataAndExpectedValueProviderForServiceTests() {
         return Stream.of(
                 Arguments.of(
-                        "Should parse 0 and return empty string",
+                        "Should parse 0 and return now",
                         0,
-                        ""),
+                        "now"),
                 Arguments.of(
                         "Should parse integer max and return valid value",
                         Integer.MAX_VALUE,

@@ -51,7 +51,7 @@ public class DurationFormatterService {
         }
 
         if (componentsGreaterThanZero.isEmpty()) {
-            return "";
+            return "now";
         } else if (componentsGreaterThanZero.size() == 1) {
             return componentsGreaterThanZero.getFirst();
         } else {
