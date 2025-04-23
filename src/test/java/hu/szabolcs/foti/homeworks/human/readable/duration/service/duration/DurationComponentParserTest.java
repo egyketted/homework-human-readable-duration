@@ -10,6 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static hu.szabolcs.foti.homeworks.human.readable.duration.service.duration.DurationComponent.MINUTE;
 import static hu.szabolcs.foti.homeworks.human.readable.duration.service.duration.DurationComponent.SECOND;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -67,7 +68,22 @@ public class DurationComponentParserTest {
                         "Seconds parser should handle plurality properly",
                         1,
                         new TestDurationComponentValue(1, false),
-                        SECOND)
+                        SECOND),
+                Arguments.of(
+                        "Minutes parser should parse 70 minutes properly",
+                        4200,
+                        new TestDurationComponentValue(10, true),
+                        MINUTE),
+                Arguments.of(
+                        "Minutes parser should parse large values properly",
+                        Integer.MAX_VALUE,
+                        new TestDurationComponentValue(14, true),
+                        MINUTE),
+                Arguments.of(
+                        "Minutes parser should handle plurality properly",
+                        70,
+                        new TestDurationComponentValue(1, false),
+                        MINUTE)
         );
     }
 
