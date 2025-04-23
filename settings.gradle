@@ -1,0 +1,49 @@
+rootProject.name = 'human-readable-duration'
+
+// Move dependency versions to version catalog
+dependencyResolutionManagement {
+    versionCatalogs {
+        libs {
+            // Plugin Versions
+            version('springBoot',                        '3.4.4')
+            version('springDependencyManagement',        '1.1.4')
+            version('springDocOpenApi-plugin',           '1.9.0')
+            version('springDocOpenApi-lib',              '2.4.0')
+            version('freefairLombok',                    '8.6')
+            
+            // Utility Libraries
+            version('lombok',                            '1.18.30')
+            version('jacksonDatabind',                   '2.16.1')
+            
+            // Testing
+            version('junit',                             '5.10.2')
+            version('mockito',                           '5.10.0')
+            version('assertj',                           '4.0.0-M1')
+            
+            // Define plugins
+            plugin('springBoot',                         'org.springframework.boot').versionRef('springBoot')
+            plugin('springDependencyManagement',         'io.spring.dependency-management').versionRef('springDependencyManagement')
+            plugin('springDocOpenApi',                   'org.springdoc.openapi-gradle-plugin').versionRef('springDocOpenApi-plugin')
+            plugin('lombok',                             'io.freefair.lombok').versionRef('freefairLombok')
+
+            // Spring Boot Core
+            library('springBootStarter',                 'org.springframework.boot', 'spring-boot-starter').versionRef('springBoot')
+            library('springBootStarterWeb',              'org.springframework.boot', 'spring-boot-starter-web').versionRef('springBoot')
+            library('springBootStarterActuator',         'org.springframework.boot', 'spring-boot-starter-actuator').versionRef('springBoot')
+            library('springBootStarterValidation',       'org.springframework.boot', 'spring-boot-starter-validation').versionRef('springBoot')
+            library('springBootStarterTest',             'org.springframework.boot', 'spring-boot-starter-test').versionRef('springBoot')
+            
+            library('springDocOpenApi',                  'org.springdoc', 'springdoc-openapi-starter-webmvc-ui').versionRef('springDocOpenApi-lib')
+            
+            // JSON
+            library('jacksonDatabind',                   'com.fasterxml.jackson.core', 'jackson-databind').versionRef('jacksonDatabind')
+            
+            library('lombok',                            'org.projectlombok', 'lombok').versionRef('lombok')
+
+            // Testing utility libs
+            library('junitJupiter', 'org.junit.jupiter', 'junit-jupiter').versionRef('junit')
+            library('mockitoCore', 'org.mockito', 'mockito-core').versionRef('mockito')
+            library('assertjCore', 'org.assertj', 'assertj-core').versionRef('assertj')
+        }
+    }
+} 
