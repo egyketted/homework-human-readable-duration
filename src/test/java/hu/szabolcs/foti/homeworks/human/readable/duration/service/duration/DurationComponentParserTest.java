@@ -10,6 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static hu.szabolcs.foti.homeworks.human.readable.duration.service.duration.DurationComponent.SECOND;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
@@ -50,8 +51,38 @@ public class DurationComponentParserTest {
                 Arguments.of(
                         "All parsers should parse 0 seconds properly",
                         0,
-                        new DurationComponentValue(0),
-                        null)
+                        new TestDurationComponentValue(0, false),
+                        null),
+                Arguments.of(
+                        "Seconds parser should parse 70 seconds properly",
+                        70,
+                        new TestDurationComponentValue(10, true),
+                        SECOND),
+                Arguments.of(
+                        "Seconds parser should parse large values properly",
+                        Integer.MAX_VALUE,
+                        new TestDurationComponentValue(7, true), // Integer.MAX_VALUE % 60 = 0
+                        SECOND),
+                Arguments.of(
+                        "Seconds parser should handle plurality properly",
+                        1,
+                        new TestDurationComponentValue(1, false),
+                        SECOND)
         );
+    }
+
+    public static class TestDurationComponentValue extends DurationComponentValue {
+
+        private final boolean expectedPlural;
+
+        public TestDurationComponentValue(int value, boolean plural) {
+            super(value);
+            this.expectedPlural = plural;
+        }
+
+        @Override
+        public boolean isPlural() {
+            return expectedPlural;
+        }
     }
 }
