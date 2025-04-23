@@ -1,0 +1,121 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+    alias(libs.plugins.springBoot)
+    alias(libs.plugins.springDependencyManagement)
+    alias(libs.plugins.springDocOpenApi)
+    alias(libs.plugins.lombok)
+}
+
+group = 'hu.szabolcs.foti.homeworks'
+version = '0.0.1'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    // Spring Boot starters
+    implementation libs.springBootStarter
+    implementation libs.springBootStarterWeb
+    implementation libs.springBootStarterActuator
+
+    // JSON (although spring-boot-web includes this, we might still want a fixes version)
+    implementation libs.jacksonDatabind
+
+    // OpenAPI docs
+    implementation libs.springDocOpenApi
+
+    // Test Dependencies
+    testImplementation libs.springBootStarterTest
+    testImplementation libs.junitJupiter
+    testImplementation libs.mockitoCore
+    testImplementation libs.assertjCore
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacoco {
+    toolVersion = '0.8.11'
+}
+
+ext.excludedFoldersAndFilesPathMatchers = [
+        "hu/szabolcs/foti/homeworks/human/readable/duration/HumanReadableDurationApplication.java"
+]
+
+jacocoTestReport {
+    dependsOn test
+
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: excludedFoldersAndFilesPathMatchers)
+        }))
+    }
+
+    reports {
+        xml.required = true
+        html.required = true
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+    }
+}
+
+jacocoTestCoverageVerification {
+    dependsOn processResources
+
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: excludedFoldersAndFilesPathMatchers)
+        }))
+    }
+
+    violationRules {
+        rule {
+            enabled = true
+            element = 'BUNDLE'
+
+            limit {
+                counter = 'LINE'
+                value = 'COVEREDRATIO'
+                minimum = 0.80
+            }
+
+            limit {
+                counter = 'BRANCH'
+                value = 'COVEREDRATIO'
+                minimum = 0.80
+            }
+
+            limit {
+                counter = 'METHOD'
+                value = 'COVEREDRATIO'
+                minimum = 0.80
+            }
+
+            limit {
+                counter = 'COMPLEXITY'
+                value = 'COVEREDRATIO'
+                minimum = 0.80
+            }
+        }
+    }
+}
+
+wrapper {
+    gradleVersion     = '8.5'
+    distributionType  = Wrapper.DistributionType.BIN
+}
