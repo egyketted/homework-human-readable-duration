@@ -10,8 +10,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static hu.szabolcs.foti.homeworks.human.readable.duration.service.duration.DurationComponent.MINUTE;
-import static hu.szabolcs.foti.homeworks.human.readable.duration.service.duration.DurationComponent.SECOND;
+import static hu.szabolcs.foti.homeworks.human.readable.duration.service.duration.DurationComponent.*;
+import static hu.szabolcs.foti.homeworks.human.readable.duration.service.duration.DurationParsingConstants.SECONDS_IN_AN_HOUR;
+import static hu.szabolcs.foti.homeworks.human.readable.duration.service.duration.DurationParsingConstants.SECONDS_IN_A_MINUTE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
@@ -71,7 +72,7 @@ public class DurationComponentParserTest {
                         SECOND),
                 Arguments.of(
                         "Minutes parser should parse 70 minutes properly",
-                        4200,
+                        SECONDS_IN_A_MINUTE * 70,
                         new TestDurationComponentValue(10, true),
                         MINUTE),
                 Arguments.of(
@@ -81,9 +82,24 @@ public class DurationComponentParserTest {
                         MINUTE),
                 Arguments.of(
                         "Minutes parser should handle plurality properly",
-                        70,
+                        SECONDS_IN_A_MINUTE + 10,
                         new TestDurationComponentValue(1, false),
-                        MINUTE)
+                        MINUTE),
+                Arguments.of(
+                        "Hours parser should parse 70 hours properly",
+                        SECONDS_IN_AN_HOUR * 70,
+                        new TestDurationComponentValue(22, true),
+                        HOUR),
+                Arguments.of(
+                        "Hours parser should parse large values properly",
+                        Integer.MAX_VALUE,
+                        new TestDurationComponentValue(3, true),
+                        HOUR),
+                Arguments.of(
+                        "Hours parser should handle plurality properly",
+                        SECONDS_IN_AN_HOUR + 10,
+                        new TestDurationComponentValue(1, false),
+                        HOUR)
         );
     }
 
