@@ -111,7 +111,17 @@ public class DurationComponentParserTest {
                         "Days parser should handle plurality properly",
                         SECONDS_IN_A_DAY + 10,
                         new TestDurationComponentValue(1, false),
-                        DAY)
+                        DAY),
+                Arguments.of(
+                        "Days parser should parse large values properly",
+                        Integer.MAX_VALUE,
+                        new TestDurationComponentValue(68, true),
+                        YEAR),
+                Arguments.of(
+                        "Days parser should handle plurality properly",
+                        SECONDS_IN_A_YEAR + 10,
+                        new TestDurationComponentValue(1, false),
+                        YEAR)
         );
     }
 
