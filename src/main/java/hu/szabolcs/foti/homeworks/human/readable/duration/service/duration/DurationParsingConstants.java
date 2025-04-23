@@ -10,5 +10,8 @@ public final class DurationParsingConstants {
     public static final int MINUTES_IN_AN_HOUR = SECONDS_IN_A_MINUTE;
     public static final int HOURS_IN_A_DAY = 24;
     public static final int DAYS_IN_A_YEAR = 365;
+    public static final int SECONDS_IN_AN_HOUR = 60 * 60;
+    public static final int SECONDS_IN_A_DAY = SECONDS_IN_AN_HOUR * HOURS_IN_A_DAY;
+    public static final int SECONDS_IN_A_YEAR = SECONDS_IN_A_DAY * DAYS_IN_A_YEAR;
 
 }
