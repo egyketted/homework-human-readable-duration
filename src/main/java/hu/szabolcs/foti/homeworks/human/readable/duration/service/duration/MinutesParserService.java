@@ -7,15 +7,14 @@ import static hu.szabolcs.foti.homeworks.human.readable.duration.service.duratio
 import static hu.szabolcs.foti.homeworks.human.readable.duration.service.duration.DurationParsingConstants.SECONDS_IN_A_MINUTE;
 
 @Service
-public class MinutesParserService implements DurationComponentParser {
+public class MinutesParserService extends DurationComponentParser {
     @Override
     public DurationComponent getParsedType() {
         return MINUTE;
     }
 
     @Override
-    public DurationComponentValue getParsedValue(int seconds) {
-        int value = (seconds / SECONDS_IN_A_MINUTE) % MINUTES_IN_AN_HOUR;
-        return new DurationComponentValue(value);
+    public int calculateValue(int seconds) {
+        return (seconds / SECONDS_IN_A_MINUTE) % MINUTES_IN_AN_HOUR;
     }
 }

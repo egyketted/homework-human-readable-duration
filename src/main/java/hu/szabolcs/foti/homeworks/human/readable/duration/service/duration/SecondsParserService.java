@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import static hu.szabolcs.foti.homeworks.human.readable.duration.service.duration.DurationParsingConstants.SECONDS_IN_A_MINUTE;
 
 @Service
-public class SecondsParserService implements DurationComponentParser {
+public class SecondsParserService extends DurationComponentParser {
 
     @Override
     public DurationComponent getParsedType() {
@@ -13,8 +13,7 @@ public class SecondsParserService implements DurationComponentParser {
     }
 
     @Override
-    public DurationComponentValue getParsedValue(int seconds) {
-        int value = seconds % SECONDS_IN_A_MINUTE;
-        return new DurationComponentValue(value);
+    public int calculateValue(int seconds) {
+        return seconds % SECONDS_IN_A_MINUTE;
     }
 }

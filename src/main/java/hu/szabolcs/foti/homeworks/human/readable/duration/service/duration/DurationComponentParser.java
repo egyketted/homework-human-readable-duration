@@ -1,7 +1,11 @@
 package hu.szabolcs.foti.homeworks.human.readable.duration.service.duration;
 
-public interface DurationComponentParser {
+public abstract class DurationComponentParser {
 
-    DurationComponent getParsedType();
-    DurationComponentValue getParsedValue(int seconds);
+    public abstract DurationComponent getParsedType();
+    public abstract int calculateValue(int seconds);
+
+    public DurationComponentValue getParsedValue(int seconds) {
+        return new DurationComponentValue(calculateValue(seconds));
+    }
 }
