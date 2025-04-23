@@ -11,8 +11,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static hu.szabolcs.foti.homeworks.human.readable.duration.service.duration.DurationComponent.*;
-import static hu.szabolcs.foti.homeworks.human.readable.duration.service.duration.DurationParsingConstants.SECONDS_IN_AN_HOUR;
-import static hu.szabolcs.foti.homeworks.human.readable.duration.service.duration.DurationParsingConstants.SECONDS_IN_A_MINUTE;
+import static hu.szabolcs.foti.homeworks.human.readable.duration.service.duration.DurationParsingConstants.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
@@ -43,9 +42,7 @@ public class DurationComponentParserTest {
 
         assertThat(testedParsers).isNotEmpty();
 
-        testedParsers.forEach(parser -> {
-            System.out.println(String.format("Tested %s parser", parser.getParsedType()));
-        });
+        testedParsers.forEach(parser -> System.out.printf("Tested %s parser%n", parser.getParsedType()));
     }
 
     public static Stream<Arguments> testDataAndExpectedValueProviderForParserTests() {
@@ -99,7 +96,22 @@ public class DurationComponentParserTest {
                         "Hours parser should handle plurality properly",
                         SECONDS_IN_AN_HOUR + 10,
                         new TestDurationComponentValue(1, false),
-                        HOUR)
+                        HOUR),
+                Arguments.of(
+                        "Days parser should parse 368 days properly",
+                        SECONDS_IN_A_DAY * 368,
+                        new TestDurationComponentValue(3, true),
+                        DAY),
+                Arguments.of(
+                        "Days parser should parse large values properly",
+                        Integer.MAX_VALUE,
+                        new TestDurationComponentValue(35, true),
+                        DAY),
+                Arguments.of(
+                        "Days parser should handle plurality properly",
+                        SECONDS_IN_A_DAY + 10,
+                        new TestDurationComponentValue(1, false),
+                        DAY)
         );
     }
 
